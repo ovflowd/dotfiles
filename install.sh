@@ -3,6 +3,7 @@
 sudo apt -y install nano font-manager
 
 rm -rf ~/.oh-my-zsh/
+rm -rf ~/.fonts/
 
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -16,6 +17,8 @@ cp -rf .zshrc ~/.zshrc
 
 cp -rf .p10k.zsh ~/.p10k.zsh
 
-mkdir ~/.fonts
-
 cp -rf .fonts ~/.fonts
+
+sudo cp ~/.fonts/*.ttf /usr/share/fonts/truetype
+
+fc-cache -f -v
