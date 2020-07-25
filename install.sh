@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+sudo apt -y install nano font-manager
+
+rm -rf ~/.oh-my-zsh/
+
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 ! git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -11,3 +15,7 @@
 cp -rf .zshrc ~/.zshrc
 
 cp -rf .p10k.zsh ~/.p10k.zsh
+
+mkdir ~/.fonts
+
+cp -rf .fonts ~/.fonts
