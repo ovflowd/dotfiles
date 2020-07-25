@@ -85,7 +85,6 @@ plugins=(
 	git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
-	zsh-256color
 	cp
 	colorize
 	web-search
