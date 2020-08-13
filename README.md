@@ -15,6 +15,7 @@ This repository includes ovflowd's personal dotfiles.
 - [ZSH Auto Suggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [Hack Nerd Font](https://github.com/source-foundry/Hack)
+- [Git LFS](https://git-lfs.github.com/)
 - Debian Development Tools
 
 ### CodeSpace Users
