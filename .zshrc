@@ -151,3 +151,6 @@ CONTENT
 
 # Homebrew
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# The Fuck
+eval $(thefuck --alias f)

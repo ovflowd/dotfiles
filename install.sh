@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-sudo apt -y install nano build-essential git python3-dev gcc debconf locales
+sudo apt -y install nano build-essential git python3-dev gcc debconf locales fonts-hack-ttf htop wget nmap node wget
 
 sudo locale-gen --purge en_US.UTF-8
 
@@ -24,7 +24,7 @@ source ~/.profile
 
 brew tap cantino/mcfly https://github.com/cantino/mcfly
 
-brew install bat glances mcfly
+brew install bat glances mcfly thefuck
 
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -39,3 +39,5 @@ brew install bat glances mcfly
 cp -rf .zshrc ~/.zshrc
 
 cp -rf .p10k.zsh ~/.p10k.zsh
+
+fc-cache -f -v
