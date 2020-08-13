@@ -90,6 +90,7 @@ plugins=(
 	web-search
 	node
 	npm
+  zsh-z
 )
 
 # Custom Aliases
@@ -104,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export GPG_TTY=$(tty)
 
@@ -146,3 +148,6 @@ CONTENT
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Homebrew
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
