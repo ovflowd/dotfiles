@@ -4,8 +4,12 @@ echo "\e[31m\n\n!! WARNING: This script will overwrite existing ZSH, Bash Profil
 
 echo "!! WARNING: Please do not open other terminal session until the scripts finishes !! \n"
 
+# check if environment is macOS
+if [ "$(uname)" == "Darwin" ]; then
+    echo "\e[32m[DOT]\e[34m macOS environment detected ... \n"
+    echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/"
 # check if environment is debian/ubuntu
-if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
+elif [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
     echo "\e[32m[DOT]\e[34m debian based environment detected ... \n"
     # install required dependencies 
     echo "\e[32m[DOT]\e[34m installing packages ... \n"
@@ -30,10 +34,6 @@ elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
     # reloads font cache
     echo "\e[32m[DOT]\e[34m rebuilding fonts ... \n"
     fc-cache -f -v > /dev/null 2>&1
-# check if environment is macOS
-elif [ "$(uname)" == "Darwin" ]; then
-    echo "\e[32m[DOT]\e[34m macOS environment detected ... \n"
-    echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/"
 else
     echo "\e[32m[DOT]\e[31m your running OS was not recognised. Exiting. \e[39m\n"
     exit 1
