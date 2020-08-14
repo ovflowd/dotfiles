@@ -2,6 +2,17 @@
 
 This repository includes ovflowd's personal dotfiles.
 
+### Before starting
+
+- **ZSH**. We use ZSH. Remember to install ZSH before, or `chsh -s /bin/zsh`
+- The `install.script` is compatible with Fedora, Debian and MacOS
+- This script will overwrite existing Bash Profile, ZSH and Oh-My-ZSH environments.
+
+#### Note for VS/GitHub CodeSpace Users
+
+- Please install the [Hack Nerd Font](https://github.com/source-foundry/Hack) on your system. This is required for PowerLevel10K. Otherwise Terminal will have broken icons.
+- Don't forget to change the font on `Settings > Features > Terminal > Integrated: Font Family` to `'Hack Nerd Font'`.
+
 ### Contents
 
 - [Homebrew for Linux](https://brew.sh)
@@ -18,18 +29,27 @@ This repository includes ovflowd's personal dotfiles.
 - [Git LFS](https://git-lfs.github.com/)
 - Debian Development Tools
 
-### CodeSpace Users
+### Included Packages
 
-- Please install the [Hack Nerd Font](https://github.com/source-foundry/Hack) on your system. This is required for PowerLevel10K.
+#### Debian/Ubuntu
 
-### Included Debian Packages
-
-- wget
-- nano
-- htop
-- gcc
 - build-essentials
-- python3
-- node
-- nmap
-- wget
+- debconf
+- locales
+- fonts-hack-ttf
+- git
+
+#### Fedora/RedHat/CentOS
+
+- @development-tools
+- git
+- hack-fonts
+
+#### macOS
+
+- No requirement needs to be installed
+- Fonts need to be installed manually. Follow [this](https://github.com/source-foundry/Hack#macos)
+
+#### Windows
+
+- Not compatible yet
