@@ -4,10 +4,52 @@ echo "\e[31m\n\n!! WARNING: This script will overwrite existing ZSH, Bash Profil
 
 echo "!! WARNING: Please do not open other terminal session until the scripts finishes !! \n"
 
+case "$(uname -s)" in
+    Darwin)
+        echo "\e[32m[DOT]\e[34m macOS environment detected ... \n"
+        echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/"
+    ;;
+    Linux)
+        if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
+            echo "\e[32m[DOT]\e[34m debian based environment detected ... \n"
+            # install required dependencies 
+            echo "\e[32m[DOT]\e[34m installing packages ... \n"
+            sudo apt -y install build-essential git debconf locales fonts-hack-ttf > /dev/null 2>&1
+            # generate utf-8 environment
+            echo "\e[32m[DOT]\e[34m generating locales ... \n"
+            sudo locale-gen --purge en_US.UTF-8 > /dev/null 2>&1
+            # reloads font cache
+            echo "\e[32m[DOT]\e[34m rebuilding fonts ... \n"
+            fc-cache -f -v > /dev/null 2>&1
+        # check if environment is fedora/redhat
+        elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
+            echo "\e[32m[DOT]\e[34m redhat based environment detected ... \n"
+            # install required dependencies
+            echo "\e[32m[DOT]\e[34m installing packages ... \n"
+            sudo dnf copr enable zawertun/hack-fonts -y > /dev/null 2>&1
+            # install font packages
+            sudo dnf install hack-fonts @development-tools git -y > /dev/null 2>&1
+            # generate utf-8 environment
+            echo "\e[32m[DOT]\e[34m generating locales ... \n"
+            localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 > /dev/null 2>&1
+            # reloads font cache
+            echo "\e[32m[DOT]\e[34m rebuilding fonts ... \n"
+            fc-cache -f -v > /dev/null 2>&1
+        fi
+    ;;
+    CYGWIN*|MINGW32*|MSYS*|MINGW*)
+        echo "\e[32m[DOT]\e[31m Windows is not a supported OS. Exiting. \e[39m\n"
+        exit 1
+     ;;
+    *)
+        echo "\e[32m[DOT]\e[31m you're running OS was not recognised. Exiting. \e[39m\n"
+        exit 1
+    ;;
+esac
+
 # check if environment is macOS
 if [ "$(uname)" == "Darwin" ]; then
-    echo "\e[32m[DOT]\e[34m macOS environment detected ... \n"
-    echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/"
+
 # check if environment is debian/ubuntu
 elif [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
     echo "\e[32m[DOT]\e[34m debian based environment detected ... \n"
