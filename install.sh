@@ -68,11 +68,18 @@ cp -rf .bash_profile ~/.bash_profile > /dev/null 2>&1
 echo "\e[32m[DOT]\e[34m installing homebrew ... \n"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > /dev/null 2>&1
 
-# installs homebrew on the environment
-echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/codespace/.profile
+case "$(uname -s)" in
+    Linux)
+        echo "\e[32m[DOT]\e[34m configuring homebrew ... \n"
+        # installs homebrew on the environment
+        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >> ~/.profile
 
-# enables homebrew on current runtime
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        # enables homebrew on current runtime
+        eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    ;;
+    *)
+    ;;
+esac
 
 echo "\e[32m[DOT]\e[34m installing homebrew packages ... \n"
 
