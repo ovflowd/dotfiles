@@ -5,8 +5,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# You may need to manually set your language environment
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export GPG_TTY=$(tty)
+
+# Preferred editor for local and remote sessions
+export EDITOR='nano'
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Export NVM Installation
+export NVM_DIR="$HOME/.nvm"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,11 +82,25 @@ COMPLETION_WAITING_DOTS="true"
 # Auto Suggest Configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 
-# Auto Suggestion
-ZSH_AUTOSUGGEST_STRATEGY=(
-    history
-    completion
-)
+# Auto Suggest Command
+_zsh_autosuggest_strategy_histdb_top_here() {
+    local query="select commands.argv from
+history left join commands on history.command_id = commands.rowid
+left join places on history.place_id = places.rowid
+where places.dir LIKE '$(sql_escape $PWD)%'
+and commands.argv LIKE '$(sql_escape $1)%'
+group by commands.argv order by count(*) desc limit 1"
+    suggestion=$(_histdb_query "$query")
+}
+
+# Defines Auto Suggestion Strategy
+ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+
+# [Backup] Backup History Strategy
+# ZSH_AUTOSUGGEST_STRATEGY=(
+#    history
+#    completion
+# )
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -93,6 +119,26 @@ plugins=(
   zsh-z
 )
 
+# Loads Homebrew
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Loads NVM
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
+
+# Loads NVM Completion
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
+
+# Loads The-Fuck
+eval $(thefuck --alias f)
+
+# Load GitHub CLI Completion
+eval "$(gh completion -s zsh)"
+
+# Loads SQLite History
+source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb/sqlite-history.zsh"
+
+autoload -Uz add-zsh-hook
+
 # Custom Aliases
 alias up="cd .."
 alias cl="clear"
@@ -102,15 +148,6 @@ alias g="git"
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export GPG_TTY=$(tty)
-
-# Preferred editor for local and remote sessions
-export EDITOR='nano'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -124,33 +161,11 @@ export EDITOR='nano'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-sed -e "s/^/ $(printf '%.0s ' {0..20})/" << "CONTENT"
- __
-/\ \
-\ \ \___      __   __  __
- \ \  _ `\  /'__`\/\ \/\ \
-  \ \ \ \ \/\  __/\ \ \_\ \  __
-   \ \_\ \_\ \____\\/`____ \/\ \
-    \/_/\/_/\/____/ `/___/> \ \/
-                       /\___/\/
-                       \/__/
- __      __                      __
-/\ \  __/\ \                    /\ \
-\ \ \/\ \ \ \  __  __    ___    \_\ \     __   _ __
- \ \ \ \ \ \ \/\ \/\ \ /' _ `\  /'_` \  /'__`\/\`'__\
-  \ \ \_/ \_\ \ \ \_\ \/\ \/\ \/\ \L\ \/\  __/\ \ \/
-   \ `\___x___/\ \____/\ \_\ \_\ \___,_\ \____\\ \_\
-    '\/__//__/  \/___/  \/_/\/_/\/__,_ /\/____/ \/_/
+figlet -t -k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})Hey,"
 
-    How are you doing? Let's do something cool today?
+figlet -t -k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})$(whoami)"
 
-CONTENT
+echo "\n\n$(printf '%.0s ' {0..20})$(motivate)\n"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Homebrew
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-# The Fuck
-eval $(thefuck --alias f)

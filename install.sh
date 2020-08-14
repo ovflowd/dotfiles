@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-echo "\e[31m\n\n !! WARNING: This script will overwrite existing ZSH, Bash Profile and Oh-My-ZSH configurations !! \n"
+echo "\e[31m\n\n!! WARNING: This script will overwrite existing ZSH, Bash Profile and Oh-My-ZSH configurations !! \n"
+
+echo "!! WARNING: Please do not open other terminal session until the scripts finishes !! \n"
 
 # check if environment is debian/ubuntu
 if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
@@ -70,7 +72,10 @@ echo "\e[32m[DOT]\e[34m installing homebrew packages ... \n"
 brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
 
 # installs all the required packages
-brew install bat glances mcfly thefuck git-lfs gcc nano htop nano wget nmap gnupg > /dev/null 2>&1
+brew install bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python > /dev/null 2>&1
+
+# creates nvm directory
+mkdir ~/.nvm > /dev/null 2>&1
 
 # configures git lfs
 echo "\e[32m[DOT]\e[34m configuring git lfs ... \n"
@@ -94,11 +99,32 @@ echo "\e[32m[DOT]\e[34m installing oh my zsh plugins ... \n"
 # installs zsh-z
 ! git clone https://github.com/agkozak/zsh-z.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-z" > /dev/null 2>&1
 
+# installs zsh history db
+! git clone https://github.com/larkery/zsh-histdb.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb" > /dev/null 2>&1
+
+# clones motivate
+echo "\e[32m[DOT]\e[34m installing motivate ... \n"
+
+git clone https://github.com/mubaris/motivate.git > /dev/null 2>&1
+
+cd motivate/motivate
+
+# installs motivate
+sudo ./install.sh > /dev/null 2>&1
+
+# back to home
+cd ../..
+
+# deletes the motivate folder
+rm -rf motivate/
+
+echo "\e[32m[DOT]\e[34m copying environment files ... \n"
+
 # copies the ZSH environment file
-cp -rf .zshrc ~/.zshrc
+cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
 
 # copies the PowerLevel10K configuration file
-cp -rf .p10k.zsh ~/.p10k.zsh
+cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
 
 echo "\e[32m installation finished. exiting. \e[39m\n"
 

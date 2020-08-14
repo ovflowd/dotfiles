@@ -2,6 +2,8 @@
 
 This repository includes ovflowd's personal dotfiles.
 
+In order to install, simply open your bash or zsh and run `./install.sh`. Have fun!
+
 ### Before starting
 
 - **ZSH**. We use ZSH. Remember to install ZSH before, or `chsh -s /bin/zsh`
@@ -13,7 +15,9 @@ This repository includes ovflowd's personal dotfiles.
 - Please install the [Hack Nerd Font](https://github.com/source-foundry/Hack) on your system. This is required for PowerLevel10K. Otherwise Terminal will have broken icons.
 - Don't forget to change the font on `Settings > Features > Terminal > Integrated: Font Family` to `'Hack Nerd Font'`.
 
-### Contents
+## Contents
+
+### Reference for Packages
 
 - [Homebrew for Linux](https://brew.sh)
 - [Oh-My-ZSH](https://github.com/ohmyzsh/ohmyzsh)
@@ -25,11 +29,38 @@ This repository includes ovflowd's personal dotfiles.
 - [ZSH-Z](https://github.com/agkozak/zsh-z)
 - [ZSH Auto Suggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [ZSH History DB](https://github.com/larkery/zsh-histdb)
 - [Hack Nerd Font](https://github.com/source-foundry/Hack)
 - [Git LFS](https://git-lfs.github.com/)
-- Debian Development Tools
+- [Motivate](https://github.com/mubaris/motivate)
 
-### Included Packages
+### Included Homebrew Packages
+
+- gcc
+- git-lfs
+- nmap
+- gnupg
+- mcfly
+- glances
+- bat
+- htop
+- the-fuck
+- gh
+- coreutils
+- sqlite
+- figlet
+- nvm
+- python
+
+### Included ZSH Plugins
+
+- zsh-z
+- zsh-autosuggestions
+- zsh-syntax-highlithing
+- zsh-sqlite-history-completion
+- zsh-histdb
+
+### Included System Packages
 
 #### Debian/Ubuntu
 
