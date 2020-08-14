@@ -10,6 +10,9 @@ export EDITOR='nano'
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Updated Path Exports
+export PATH="/usr/local/sbin:$PATH"
+
 # Export NVM Installation
 export NVM_DIR="$HOME/.nvm"
 

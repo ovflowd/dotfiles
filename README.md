@@ -53,6 +53,7 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - figlet
 - nvm
 - python
+- less
 
 ### Included ZSH Plugins
 
