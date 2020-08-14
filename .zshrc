@@ -119,8 +119,8 @@ plugins=(
   zsh-z
 )
 
-# Loads Homebrew
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# Loads Homebrew (only if exists and needed (Linux))
+[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Loads NVM
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
