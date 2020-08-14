@@ -134,6 +134,9 @@ eval $(thefuck --alias f)
 # Load GitHub CLI Completion
 eval "$(gh completion -s zsh)"
 
+# Helps on macOS for Autocompletion
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+
 # Loads SQLite History
 source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb/sqlite-history.zsh"
 
