@@ -9,6 +9,8 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - **ZSH**. We use ZSH. Remember to install ZSH before, or `chsh -s /bin/zsh`
 - The `install.script` is compatible with Fedora, Debian and MacOS
 - This script will overwrite existing Bash Profile, ZSH and Oh-My-ZSH environments.
+- **DO NOT** run the script as **sudo/sudoer** the script will ask for privileges when it needs to.
+- The script can be fully executed in an unattended fashion depending of the environment (Docker/CodeSpace/CI pipelines)
 
 #### Note for VS/GitHub CodeSpace Users
 
