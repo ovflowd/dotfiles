@@ -5,12 +5,12 @@ echo "!! WARNING: Please do not open other terminal session until the scripts fi
 
 case "$(uname -s)" in
     Darwin)
-        echo "\e[32m[DOT]\e[33m Darwin based enviroonment detected ... \e[39m\n"
+        echo "\e[32m[DOT]\e[33m Darwin based environment detected ... \e[39m\n"
         echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/ \e[39m\n"
     ;;
     Linux)
         if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
-            echo "\e[32m[DOT]\e[33m Debian based enviroonment detected ... \e[39m\n"
+            echo "\e[32m[DOT]\e[33m Debian based environment detected ... \e[39m\n"
             # install required dependencies 
             echo "\e[32m[DOT]\e[34m installing packages ... \e[39m\n"
             sudo apt -y install build-essential git debconf locales fonts-hack-ttf > /dev/null 2>&1
@@ -22,7 +22,7 @@ case "$(uname -s)" in
             fc-cache -f -v > /dev/null 2>&1
         # check if environment is fedora/redhat
         elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
-            echo "\e[32m[DOT]\e[33m RedHat based enviroonment detected ... \e[39m\n"
+            echo "\e[32m[DOT]\e[33m RedHat based environment detected ... \e[39m\n"
             # install required dependencies
             echo "\e[32m[DOT]\e[34m installing packages ... \e[39m\n"
             sudo dnf copr enable zawertun/hack-fonts -y > /dev/null 2>&1
