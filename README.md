@@ -45,6 +45,10 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - [Hack Nerd Font](https://github.com/source-foundry/Hack)
 - [Git LFS](https://git-lfs.github.com/)
 - [Motivate](https://github.com/mubaris/motivate)
+- [Commitizen](https://github.com/commitizen)
+- [Conventional Commits](https://www.conventionalcommits.org)
+- [Ruby Bundler](https://bundler.io/)
+- [SpeedTest CLI](https://www.speedtest.net/apps/cli)
 
 ### Included Homebrew Packages
 
