@@ -127,13 +127,12 @@ echo "\e[32m[DOT]\e[34m installing motivate ... \e[39m\n"
 
 git clone https://github.com/mubaris/motivate.git > /dev/null 2>&1
 
-cd motivate/motivate
+(
+    cd motivate/motivate
 
-# installs motivate
-sudo ./install.sh > /dev/null 2>&1
-
-# back to home
-cd ../..
+    # installs motivate
+    sudo ./install.sh > /dev/null 2>&1
+)
 
 # deletes the motivate folder
 rm -rf motivate/
