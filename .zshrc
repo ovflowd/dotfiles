@@ -149,6 +149,7 @@ autoload -Uz add-zsh-hook
 alias up="cd .."
 alias cl="clear"
 alias g="git"
+alias bu="brew upgrade && brew cask upgrade"
 
 # Load Oh My ZSH
 source $ZSH/oh-my-zsh.sh

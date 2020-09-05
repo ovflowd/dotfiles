@@ -54,6 +54,8 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - nvm
 - python
 - less
+- speedtest-cli
+- bind
 
 ### Included ZSH Plugins
 
@@ -72,17 +74,20 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - locales
 - fonts-hack-ttf
 - git
+- bundler
 
 #### Fedora/RedHat/CentOS
 
 - @development-tools
 - git
 - hack-fonts
+- bundler
 
 #### macOS
 
 - No requirement needs to be installed
 - Fonts need to be installed manually. Follow [this](https://github.com/source-foundry/Hack#macos)
+- bundler
 
 #### Windows
 
