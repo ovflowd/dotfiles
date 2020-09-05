@@ -156,7 +156,7 @@ alias commit="git cz"
 alias bu="brew upgrade"
 
 # only macOS supports casks
-[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="$(bu) && brew cask upgrade"
+[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="brew upgrade && brew cask upgrade"
 
 # Load Oh My ZSH
 source $ZSH/oh-my-zsh.sh
