@@ -124,6 +124,9 @@ plugins=(
 # Loads NVM Completion
 [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
 
+# Loads NVM
+nvm use > /dev/null 2>&1
+
 # Loads The-Fuck
 eval $(thefuck --alias f)
 
@@ -149,7 +152,11 @@ autoload -Uz add-zsh-hook
 alias up="cd .."
 alias cl="clear"
 alias g="git"
-alias bu="brew upgrade && brew cask upgrade"
+alias commit="git cz"
+alias bu="brew upgrade"
+
+# only macOS supports casks
+[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="$(bu) && brew cask upgrade"
 
 # Load Oh My ZSH
 source $ZSH/oh-my-zsh.sh

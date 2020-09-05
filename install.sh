@@ -97,6 +97,23 @@ sudo gem install bundler > /dev/null 2>&1
 # creates nvm directory
 mkdir ~/.nvm > /dev/null 2>&1
 
+# installs latest node
+echo "\e[32m[DOT]\e[34m installing node.js ... \e[39m\n"
+nvm install node > /dev/null 2>&1
+
+# switches to latest node
+echo "\e[32m[DOT]\e[34m switching to latest node ... \e[39m\n"
+nvm use node > /dev/null 2>&1
+npm config delete prefix > /dev/null 2>&1
+
+# installs conventional commits
+echo "\e[32m[DOT]\e[34m installing commitizen ... \e[39m\n"
+npm i -g commitizen cz-conventional-changelog @commitlint/cli @commitlint/config-conventional --silent > /dev/null 2>&1
+
+echo "\e[32m[DOT]\e[34m enabling commit lint ... \e[39m\n"
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > ~/commitlint.config.js
+echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
 # configures git lfs
 echo "\e[32m[DOT]\e[34m configuring git lfs ... \e[39m\n"
 git lfs install --system > /dev/null 2>&1
@@ -105,7 +122,10 @@ git lfs install --system > /dev/null 2>&1
 echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
 
-echo "\e[32m[DOT]\e[34m installing oh my zsh plugins ... \e[39m\n"
+# updates git configuration
+echo "\e[32m[DOT]\e[34m enabling default git strategies ... \e[39m\n"
+git config --global pull.rebase true
+git config --global core.hooksPath ~/.hooks
 
 # installs power-level-10k
 ! git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" > /dev/null 2>&1
@@ -144,6 +164,9 @@ cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
 
 # copies the PowerLevel10K configuration file
 cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
+
+# copies .hooks folder
+cp -rf .hooks ~/.hooks > /dev/null 2>&1
 
 echo "\e[32mInstallation Finished. Exiting. \e[39m\n"
 

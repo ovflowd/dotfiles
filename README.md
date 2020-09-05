@@ -11,6 +11,16 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - This script will overwrite existing Bash Profile, ZSH and Oh-My-ZSH environments.
 - **DO NOT** run the script as **sudo/sudoer** the script will ask for privileges when it needs to.
 - The script can be fully executed in an unattended fashion depending of the environment (Docker/CodeSpace/CI pipelines)
+- This script enables `git rebase` strategy by default when doing pulls
+- This script enables commitizen and commitlint by default when doing commits via hook
+
+### Custom Bash Aliases
+
+- `bu` - updates brew formulas and casks (if its macOS)
+- `up` - goes one directory backwards
+- `cl` - clear the console output
+- `g` - git command alias
+- `commit` - alias to `git cz`
 
 #### Note for VS/GitHub CodeSpace Users
 
@@ -75,6 +85,8 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - fonts-hack-ttf
 - git
 - bundler
+- commitizen (conventional commits, changelogs)
+- latest node via nvm
 
 #### Fedora/RedHat/CentOS
 
@@ -82,12 +94,16 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - git
 - hack-fonts
 - bundler
+- commitizen (conventional commits, changelogs)
+- latest node via nvm
 
 #### macOS
 
 - No requirement needs to be installed
 - Fonts need to be installed manually. Follow [this](https://github.com/source-foundry/Hack#macos)
 - bundler
+- commitizen (conventional commits, changelogs)
+- latest node via nvm
 
 #### Windows
 
