@@ -1,5 +1,7 @@
 ## ovflowd's personal dotfiles
 
+![](https://imgur.com/9zfsTwH.jpg)
+
 This repository includes ovflowd's personal dotfiles.
 
 In order to install, simply open your bash or zsh and run `./install.sh`. Have fun!
