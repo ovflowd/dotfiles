@@ -6,34 +6,25 @@ echo "!! WARNING: Please do not open other terminal session until the scripts fi
 case "$(uname -s)" in
     Darwin)
         echo "\e[32m[DOT]\e[33m Darwin based environment detected ... \e[39m\n"
-        echo "\e[32m[DOT]\e[34m Hack Nerd Fonts requires manual installation.. Download it from: https://github.com/source-foundry/Hack/releases/ \e[39m\n"
     ;;
     Linux)
         if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
             echo "\e[32m[DOT]\e[33m Debian based environment detected ... \e[39m\n"
             # install required dependencies 
             echo "\e[32m[DOT]\e[34m installing packages ... \e[39m\n"
-            sudo apt -y install build-essential git debconf locales fonts-hack-ttf > /dev/null 2>&1
+            sudo apt -y install build-essential git debconf locales > /dev/null 2>&1
             # generate utf-8 environment
             echo "\e[32m[DOT]\e[34m generating locales ... \e[39m\n"
             sudo locale-gen --purge en_US.UTF-8 > /dev/null 2>&1
-            # reloads font cache
-            echo "\e[32m[DOT]\e[34m rebuilding fonts ... \e[39m\n"
-            fc-cache -f -v > /dev/null 2>&1
         # check if environment is fedora/redhat
         elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
             echo "\e[32m[DOT]\e[33m RedHat based environment detected ... \e[39m\n"
             # install required dependencies
             echo "\e[32m[DOT]\e[34m installing packages ... \e[39m\n"
-            sudo dnf copr enable zawertun/hack-fonts -y > /dev/null 2>&1
-            # install font packages
-            sudo dnf install hack-fonts @development-tools git -y > /dev/null 2>&1
+            sudo dnf install @development-tools git -y > /dev/null 2>&1
             # generate utf-8 environment
             echo "\e[32m[DOT]\e[34m generating locales ... \e[39m\n"
             localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 > /dev/null 2>&1
-            # reloads font cache
-            echo "\e[32m[DOT]\e[34m rebuilding fonts ... \e[39m\n"
-            fc-cache -f -v > /dev/null 2>&1
         fi
     ;;
     CYGWIN*|MINGW32*|MSYS*|MINGW*)
@@ -70,6 +61,12 @@ echo "\e[32m[DOT]\e[34m installing homebrew ...  \e[39m\n"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > /dev/null 2>&1
 
 case "$(uname -s)" in
+    Darwin)
+        echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
+        brew tap homebrew/cask-fonts > /dev/null 2>&1
+
+        brew cask install font-hack-nerd-font > /dev/null 2>&1
+    ;;
     Linux)
         echo "\e[32m[DOT]\e[34m configuring homebrew ... \e[39m\n"
         # installs homebrew on the environment
@@ -77,6 +74,22 @@ case "$(uname -s)" in
 
         # enables homebrew on current runtime
         eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+        echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
+        # creates local fonts directory
+        mkdir -p ~/.local/share/fonts
+
+        (
+            # goes to the directory
+            cd ~/.local/share/fonts
+
+            # downloads the font file
+            curl -fLo "Hack NF.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf > /dev/null 2>&1
+
+            # reloads font cache
+            echo "\e[32m[DOT]\e[34m rebuilding fonts ... \e[39m\n"
+            fc-cache -f -v > /dev/null 2>&1
+        )
     ;;
     *)
     ;;
@@ -88,7 +101,7 @@ echo "\e[32m[DOT]\e[34m installing homebrew packages ... \e[39m\n"
 brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
 
 # installs all the required packages
-brew install bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli "bind" less > /dev/null 2>&1
+brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli "bind" less > /dev/null 2>&1
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
@@ -118,14 +131,16 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 echo "\e[32m[DOT]\e[34m configuring git lfs ... \e[39m\n"
 git lfs install --system > /dev/null 2>&1
 
-# installs oh-my-zsh
-echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
-! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
-
 # updates git configuration
 echo "\e[32m[DOT]\e[34m enabling default git strategies ... \e[39m\n"
 git config --global pull.rebase true
 git config --global core.hooksPath ~/.hooks
+
+# installs oh-my-zsh
+echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
+! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
+
+echo "\e[32m[DOT]\e[34m installing oh my zsh plugins ... \e[39m\n"
 
 # installs power-level-10k
 ! git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" > /dev/null 2>&1
@@ -142,12 +157,13 @@ git config --global core.hooksPath ~/.hooks
 # installs zsh history db
 ! git clone https://github.com/larkery/zsh-histdb.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb" > /dev/null 2>&1
 
-# clones motivate
 echo "\e[32m[DOT]\e[34m installing motivate ... \e[39m\n"
 
+# clones motivate
 git clone https://github.com/mubaris/motivate.git > /dev/null 2>&1
 
 (
+    # goes to the directory
     cd motivate/motivate
 
     # installs motivate

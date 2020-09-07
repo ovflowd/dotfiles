@@ -44,13 +44,14 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - [ZSH Auto Suggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [ZSH History DB](https://github.com/larkery/zsh-histdb)
-- [Hack Nerd Font](https://github.com/source-foundry/Hack)
+- [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 - [Git LFS](https://git-lfs.github.com/)
 - [Motivate](https://github.com/mubaris/motivate)
 - [Commitizen](https://github.com/commitizen)
 - [Conventional Commits](https://www.conventionalcommits.org)
 - [Ruby Bundler](https://bundler.io/)
 - [SpeedTest CLI](https://www.speedtest.net/apps/cli)
+
 
 ### Included Homebrew Packages
 
@@ -72,6 +73,7 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - less
 - speedtest-cli
 - bind
+- fish
 
 ### Included ZSH Plugins
 
@@ -88,7 +90,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - build-essentials
 - debconf
 - locales
-- fonts-hack-ttf
 - git
 - bundler
 - commitizen (conventional commits, changelogs)
@@ -98,7 +99,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 
 - @development-tools
 - git
-- hack-fonts
 - bundler
 - commitizen (conventional commits, changelogs)
 - latest node via nvm
@@ -106,7 +106,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 #### macOS
 
 - No requirement needs to be installed
-- Fonts need to be installed manually. Follow [this](https://github.com/source-foundry/Hack#macos)
 - bundler
 - commitizen (conventional commits, changelogs)
 - latest node via nvm
