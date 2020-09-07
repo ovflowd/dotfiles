@@ -1,4 +1,4 @@
-#! /usr/bin/fish
+#!/bin/sh
 
 # run any local commit-msg hook first
 if test -e ./.git/hooks/commit-msg
