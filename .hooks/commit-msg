@@ -1,10 +1,5 @@
 #! /usr/local/bin/fish
 
-# run any local commit-msg hook first
-if test -e ./.git/hooks/commit-msg
-        sh ./.git/hooks/commit-msg
-end
-
-commitlint < $argv[1]
+commitlint --edit < $argv[1]
 
 exit $status
