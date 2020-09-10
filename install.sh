@@ -134,7 +134,6 @@ git lfs install --system > /dev/null 2>&1
 # updates git configuration
 echo "\e[32m[DOT]\e[34m enabling default git strategies ... \e[39m\n"
 git config --global pull.rebase true
-git config --global core.hooksPath ~/.hooks
 
 # installs oh-my-zsh
 echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
@@ -180,9 +179,6 @@ cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
 
 # copies the PowerLevel10K configuration file
 cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
-
-# copies .hooks folder
-cp -rf .hooks ~/.hooks > /dev/null 2>&1
 
 echo "\e[32mInstallation Finished. Exiting. \e[39m\n"
 
