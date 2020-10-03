@@ -180,6 +180,14 @@ cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
 # copies the PowerLevel10K configuration file
 cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
 
+# loads the source
+source ~/.zshrc
+
+# initializes history db
+echo "\e[32m[DOT]\e[34m initializing history database ... \e[39m\n"
+
+histdb-sync > /dev/null 2>&1
+
 echo "\e[32mInstallation Finished. Exiting. \e[39m\n"
 
 exit 0
