@@ -72,7 +72,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - python
 - less
 - speedtest-cli
-- bind
 - fish
 
 ### Included ZSH Plugins
