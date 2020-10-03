@@ -82,6 +82,20 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - zsh-sqlite-history-completion
 - zsh-histdb
 
+### Included Extra Packages
+
+#### Ruby
+
+- bundler
+
+#### Node.js
+
+- nvm
+
+#### Python
+
+- virtualenv
+
 ### Included System Packages
 
 #### Debian/Ubuntu
@@ -90,7 +104,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - debconf
 - locales
 - git
-- bundler
 - commitizen (conventional commits, changelogs)
 - latest node via nvm
 
@@ -98,14 +111,12 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 
 - @development-tools
 - git
-- bundler
 - commitizen (conventional commits, changelogs)
 - latest node via nvm
 
 #### macOS
 
 - No requirement needs to be installed
-- bundler
 - commitizen (conventional commits, changelogs)
 - latest node via nvm
 

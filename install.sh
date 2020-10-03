@@ -103,6 +103,9 @@ brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
 # installs all the required packages
 brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less > /dev/null 2>&1
 
+# install other brew dependencies
+brew install ffmpeg > /dev/null 2>&1
+
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
 sudo gem install bundler > /dev/null 2>&1
@@ -182,6 +185,11 @@ cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
 
 # loads the source
 source ~/.zshrc
+
+# installs virtualenv for python
+echo "\e[32m[DOT]\e[34m installing virtualenv ... \e[39m\n"
+
+pip3 install virtualenv > /dev/null 2>&1
 
 # initializes history db
 echo "\e[32m[DOT]\e[34m initializing history database ... \e[39m\n"
