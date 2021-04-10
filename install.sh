@@ -65,7 +65,7 @@ case "$(uname -s)" in
         echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
         brew tap homebrew/cask-fonts > /dev/null 2>&1
 
-        brew cask install font-hack-nerd-font > /dev/null 2>&1
+        brew install font-hack-nerd-font > /dev/null 2>&1
     ;;
     Linux)
         echo "\e[32m[DOT]\e[34m configuring homebrew ... \e[39m\n"
@@ -101,10 +101,7 @@ echo "\e[32m[DOT]\e[34m installing homebrew packages ... \e[39m\n"
 brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
 
 # installs all the required packages
-brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less > /dev/null 2>&1
-
-# install other brew dependencies
-brew install ffmpeg > /dev/null 2>&1
+brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less install ffmpeg > /dev/null 2>&1
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
