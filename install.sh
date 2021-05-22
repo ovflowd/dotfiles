@@ -101,7 +101,7 @@ echo "\e[32m[DOT]\e[34m installing homebrew packages ... \e[39m\n"
 brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
 
 # installs all the required packages
-brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less install ffmpeg > /dev/null 2>&1
+brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less ffmpeg > /dev/null 2>&1
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
