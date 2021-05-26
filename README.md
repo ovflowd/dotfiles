@@ -52,7 +52,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - [Ruby Bundler](https://bundler.io/)
 - [SpeedTest CLI](https://www.speedtest.net/apps/cli)
 
-
 ### Included Homebrew Packages
 
 - gcc
@@ -136,3 +135,74 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 #### Windows
 
 - Not compatible yet
+
+## Recommendations
+
+This section is about some personal recommendations of things you might want to install.
+
+### Recommended Homebrew Taps
+
+These Taps are super interesting if you want Drivers or Tools that Hardware-specific, like Logitech Stuff
+
+```shell
+brew tap homebrew/cask-fonts
+brew tap homebrew/cask-drivers
+```
+
+### Personal Homebrew Casks
+
+The following Casks I install on every environment that I install. They are extremely useful.
+
+```shell
+brew install discord docker google-chrome google-drive jetbrains-toolbox spotify sublime-text
+```
+
+- [Discord](https://discord.com) is a chat platform designed for communities
+- [Docker](https://docker.com) is a Container-based platform
+- [Google Chrome](https://chrome.google.com) is a web browser that runs the V8 engine
+- [Google Drive](https://drive.google.com) is Cloud-Based file management tool
+- [JetBrains ToolBoox](https://www.jetbrains.com/toolbox-app/) is a Hub for all JetBrains IDE's and tools
+- [Spotify](https://spotify.com) is a music player and cloud-based music provider
+- [Sublime Tex](https://www.sublimetext.com/) is a powerfull text-editor
+
+#### Paid Software Casks
+
+The following Casks are Paid Softwares, but are ones that I find essential.
+
+```shell
+brew install 1password cleanmymac istat-menus tableplus transmit
+```
+
+- [1Password](https://1password.com) is a password management tool
+- [CleanMyMac](https://macpaw.com/cleanmymac) is a tool for optimizing your Mac
+- [iStatMenus](https://bjango.com/mac/istatmenus/) is a tool for visualizing details about your Mac's hardware
+- [TablePlus](https://tableplus.com/) is a database management tool which support both NoSQL and SQL-based databases
+- [Transmit](https://panic.com/transmit/) is an app for amanging files over many protocols (FTP, etc...)
+
+#### Other Casks that I use
+
+These below are Casks that I personally use but you might not need at all
+
+```shell
+brew install macs-fan-control gitkraken figma element authy rocket-chat slack whatsapp zoom
+```
+
+- [Macs Fan Control](https://crystalidea.com/macs-fan-control) is a tool for managing your Mac fans
+- [GitKraken](https://www.gitkraken.com/) is a Git GUI
+- [Figma](https://www.figma.com/) is a designing and prototyping tool
+- [Element](https://element.io) is a Matrix Client
+- [Rocket Chat](https://rocket.chat/) is a Slack alternative which is Open Source
+- [Slack](https://slack.com) is a Chat and Communication platform for Work
+- [Authy](https://authy.com/) is a 2FA tool for storing your credentials
+- [WhatsApp](https://whatsapp.com) is a communication platform for mobile devices. This is their desktop client.
+- [Zoom](https://zoom.us) is a platforms for making calls and meetings
+
+### Casks Related to Gaming Stuff
+
+```shell
+brew install nvidia-geforce-now sony-ps4-remote-play steam
+```
+
+- [Nvidia GeForce Now](https://www.nvidia.com/en-us/geforce-now/) is a Cloud-based Gaming Platform
+- Sony PS4 Remote Play allows you to control your PS4/PS5 remotely
+- [Steam](https://store.steampowered.com/) a game store, launcher and platform
