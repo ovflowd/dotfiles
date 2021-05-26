@@ -73,6 +73,8 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - less
 - speedtest-cli
 - fish
+- tldr
+- byobu
 
 ### Included ZSH Plugins
 
