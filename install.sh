@@ -63,12 +63,14 @@ echo "\e[32m[DOT]\e[34m installing homebrew ...  \e[39m\n"
 case "$(uname -s)" in
     Darwin)
         echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
-        brew tap homebrew/cask-fonts > /dev/null 2>&1
 
-        brew install font-hack-nerd-font > /dev/null 2>&1
+        brew tap homebrew/cask-fonts --quiet
+
+        brew install font-hack-nerd-font --quiet
     ;;
     Linux)
         echo "\e[32m[DOT]\e[34m configuring homebrew ... \e[39m\n"
+
         # installs homebrew on the environment
         echo "eval \$($(brew --prefix)/bin/brew shellenv)" >> ~/.profile
 
@@ -76,6 +78,7 @@ case "$(uname -s)" in
         eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
         echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
+
         # creates local fonts directory
         mkdir -p ~/.local/share/fonts
 
@@ -98,10 +101,10 @@ esac
 echo "\e[32m[DOT]\e[34m installing homebrew packages ... \e[39m\n"
 
 # taps to a homebrew tap for mcfly package
-brew tap cantino/mcfly https://github.com/cantino/mcfly > /dev/null 2>&1
+brew tap cantino/mcfly https://github.com/cantino/mcfly --quiet
 
 # installs all the required packages
-brew install fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less ffmpeg > /dev/null 2>&1
+brew reinstall fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less ffmpeg tldr byobu --quiet
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
