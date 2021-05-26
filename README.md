@@ -93,6 +93,17 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 #### Node.js
 
 - nvm
+- @commitlint/cli
+- cz-conventional-changelog
+- @commitlint/config-conventional
+- eslint
+- prettier
+- yarn (1.x)
+- ts-node
+- babel-node
+- cross-env
+- lerna
+- husky (6.x)
 
 #### Python
 
