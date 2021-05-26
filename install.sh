@@ -124,11 +124,15 @@ npm config delete prefix > /dev/null 2>&1
 
 # installs conventional commits
 echo "\e[32m[DOT]\e[34m installing commitizen ... \e[39m\n"
-npm i -g commitizen cz-conventional-changelog @commitlint/cli @commitlint/config-conventional --silent > /dev/null 2>&1
+npm i -g commitizen cz-conventional-changelog @commitlint/cli @commitlint/config-conventional --silent
 
 echo "\e[32m[DOT]\e[34m enabling commit lint ... \e[39m\n"
 echo "module.exports = {extends: ['@commitlint/config-conventional']}" > ~/commitlint.config.js
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
+# installs other npm commonly used tools
+echo "\e[32m[DOT]\e[34m installing other node packages ... \e[39m\n"
+npm i -g yarn eslint prettier husky ts-node babel-node cross-env lerna --silent
 
 # configures git lfs
 echo "\e[32m[DOT]\e[34m configuring git lfs ... \e[39m\n"
