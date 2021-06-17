@@ -41,7 +41,6 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - [The Fuck](https://github.com/nvbn/thefuck)
 - [McFly](https://github.com/cantino/mcfly)
 - [ZSH-Z](https://github.com/agkozak/zsh-z)
-- [ZSH Auto Suggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [ZSH History DB](https://github.com/larkery/zsh-histdb)
 - [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts)
@@ -74,14 +73,17 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - fish
 - tldr
 - byobu
+- lsd
+- httpie
+- dust
 
 ### Included ZSH Plugins
 
 - zsh-z
-- zsh-autosuggestions
 - zsh-syntax-highlithing
 - zsh-sqlite-history-completion
 - zsh-histdb
+- McFly
 
 ### Included Extra Packages
 
@@ -103,6 +105,7 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - cross-env
 - lerna
 - husky (6.x)
+- gtop
 
 #### Python
 
