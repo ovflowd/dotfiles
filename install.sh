@@ -66,7 +66,7 @@ case "$(uname -s)" in
 
         brew tap homebrew/cask-fonts --quiet
 
-        brew install font-hack-nerd-font --quiet
+        brew reinstall font-hack-nerd-font --quiet
     ;;
     Linux)
         echo "\e[32m[DOT]\e[34m configuring homebrew ... \e[39m\n"
@@ -112,12 +112,12 @@ brew tap cantino/mcfly --quiet
 sudo chown -R $(whoami) $(brew --prefix)/*
 
 # installs all the required packages
-brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
+brew reinstall fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
 
 # fix homebrew permissions
 sudo chown -R $(whoami) $(brew --prefix)/*
 
-brew install sqlite python --quiet
+brew reinstall sqlite python --quiet
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
