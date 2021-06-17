@@ -75,29 +75,6 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Auto Suggest Configuration
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-
-# Auto Suggest Command
-_zsh_autosuggest_strategy_histdb_top_here() {
-    local query="select commands.argv from
-history left join commands on history.command_id = commands.rowid
-left join places on history.place_id = places.rowid
-where places.dir LIKE '$(sql_escape $PWD)%'
-and commands.argv LIKE '$(sql_escape $1)%'
-group by commands.argv order by count(*) desc limit 1"
-    suggestion=$(_histdb_query "$query")
-}
-
-# Defines Auto Suggestion Strategy
-ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
-
-# [Backup] Backup History Strategy
-# ZSH_AUTOSUGGEST_STRATEGY=(
-#    history
-#    completion
-# )
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -106,7 +83,6 @@ ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 plugins=(
 	git
 	zsh-syntax-highlighting
-	zsh-autosuggestions
 	cp
 	colorize
 	web-search
@@ -118,6 +94,8 @@ plugins=(
 # Loads Homebrew (only if exists and needed (Linux))
 [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
+[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || export BYOBU_PREFIX=/home/linuxbrew/.linuxbrew
+
 # Loads NVM
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
 
@@ -127,17 +105,14 @@ plugins=(
 # Loads NVM
 nvm use > /dev/null 2>&1
 
+# Loads Mcfly
+eval "$(mcfly init zsh)"
+
 # Loads The-Fuck
 eval $(thefuck --alias f)
 
 # Load GitHub CLI Completion
 eval "$(gh completion -s zsh)"
-
-# Helps on macOS for Autocompletion
-HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-
-# Loads SQLite History
-source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb/sqlite-history.zsh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

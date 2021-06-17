@@ -71,11 +71,12 @@ case "$(uname -s)" in
     Linux)
         echo "\e[32m[DOT]\e[34m configuring homebrew ... \e[39m\n"
 
-        # installs homebrew on the environment
-        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >> ~/.profile
-
         # enables homebrew on current runtime
-        eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+
+        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 
         echo "\e[32m[DOT]\e[34m installing nerd fonts ... \e[39m\n"
 
@@ -98,17 +99,32 @@ case "$(uname -s)" in
     ;;
 esac
 
+# Reloads the Environment
+test -d ~/.zshrc && source ~/.zshrc
+test -d ~/.profile && source ~/.profile
+
 echo "\e[32m[DOT]\e[34m installing homebrew packages ... \e[39m\n"
 
 # taps to a homebrew tap for mcfly package
-brew tap cantino/mcfly https://github.com/cantino/mcfly --quiet
+brew tap cantino/mcfly --quiet
+
+# fix homebrew permissions
+sudo chown -R $(whoami) $(brew --prefix)/*
 
 # installs all the required packages
-brew reinstall fish bat glances mcfly thefuck git-lfs gcc nano htop wget nmap gnupg sqlite gh coreutils nvm figlet python speedtest-cli less ffmpeg tldr byobu --quiet
+brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
+
+# fix homebrew permissions
+sudo chown -R $(whoami) $(brew --prefix)/*
+
+brew install sqlite python --quiet
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
 sudo gem install bundler > /dev/null 2>&1
+
+# sets nvm directory
+export NVM_DIR="$HOME/.nvm"
 
 # creates nvm directory
 mkdir ~/.nvm > /dev/null 2>&1
@@ -117,10 +133,17 @@ mkdir ~/.nvm > /dev/null 2>&1
 echo "\e[32m[DOT]\e[34m installing node.js ... \e[39m\n"
 nvm install node > /dev/null 2>&1
 
+# Reloads the Environment
+test -d ~/.zshrc && source ~/.zshrc
+test -d ~/.profile && source ~/.profile
+
 # switches to latest node
 echo "\e[32m[DOT]\e[34m switching to latest node ... \e[39m\n"
 nvm use node > /dev/null 2>&1
-npm config delete prefix > /dev/null 2>&1
+nvm alias default node > /dev/null 2>&1
+
+# upgrades npm to latest version
+npm i -g npm > /dev/null 2>&1
 
 # installs conventional commits
 echo "\e[32m[DOT]\e[34m installing commitizen ... \e[39m\n"
@@ -132,7 +155,7 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 
 # installs other npm commonly used tools
 echo "\e[32m[DOT]\e[34m installing other node packages ... \e[39m\n"
-npm i -g yarn eslint prettier husky ts-node babel-node cross-env lerna --silent
+npm i -g npm yarn eslint prettier husky ts-node babel-node cross-env lerna gtop --silent
 
 # configures git lfs
 echo "\e[32m[DOT]\e[34m configuring git lfs ... \e[39m\n"
@@ -142,6 +165,15 @@ git lfs install --system > /dev/null 2>&1
 echo "\e[32m[DOT]\e[34m enabling default git strategies ... \e[39m\n"
 git config --global pull.rebase true
 
+# installs virtualenv for python
+echo "\e[32m[DOT]\e[34m installing virtualenv ... \e[39m\n"
+
+pip3 install virtualenv > /dev/null 2>&1
+
+# Reloads the Environment
+test -d ~/.zshrc && source ~/.zshrc
+test -d ~/.profile && source ~/.profile
+
 # installs oh-my-zsh
 echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
@@ -150,9 +182,6 @@ echo "\e[32m[DOT]\e[34m installing oh my zsh plugins ... \e[39m\n"
 
 # installs power-level-10k
 ! git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" > /dev/null 2>&1
-
-# installs zsh auto suggestions
-! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" > /dev/null 2>&1
 
 # installs zsh-syntax-highlighting
 ! git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" > /dev/null 2>&1
@@ -187,13 +216,8 @@ cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
 # copies the PowerLevel10K configuration file
 cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
 
-# loads the source
-source ~/.zshrc
-
-# installs virtualenv for python
-echo "\e[32m[DOT]\e[34m installing virtualenv ... \e[39m\n"
-
-pip3 install virtualenv > /dev/null 2>&1
+# touches zsh history file
+[[ ! -f ~/.zsh_history ]] && touch ~/.zsh_history
 
 # initializes history db
 echo "\e[32m[DOT]\e[34m initializing history database ... \e[39m\n"
