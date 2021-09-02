@@ -112,12 +112,12 @@ brew tap cantino/mcfly --quiet
 sudo chown -R $(whoami) $(brew --prefix)/*
 
 # installs all the required packages
-brew reinstall fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
+brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
 
 # fix homebrew permissions
 sudo chown -R $(whoami) $(brew --prefix)/*
 
-brew reinstall sqlite python --quiet
+brew install sqlite python --quiet
 
 # install bundler
 echo "\e[32m[DOT]\e[34m installing ruby bundler ... \e[39m\n"
@@ -211,10 +211,10 @@ rm -rf motivate/
 echo "\e[32m[DOT]\e[34m copying environment files ... \e[39m\n"
 
 # copies the ZSH environment file
-cp -rf .zshrc ~/.zshrc > /dev/null 2>&1
+cp .zshrc ~/.zshrc > /dev/null 2>&1
 
 # copies the PowerLevel10K configuration file
-cp -rf .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
+cp .p10k.zsh ~/.p10k.zsh > /dev/null 2>&1
 
 # touches zsh history file
 [[ ! -f ~/.zsh_history ]] && touch ~/.zsh_history
