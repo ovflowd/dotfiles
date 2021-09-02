@@ -174,6 +174,9 @@ pip3 install virtualenv > /dev/null 2>&1
 test -d ~/.zshrc && source ~/.zshrc
 test -d ~/.profile && source ~/.profile
 
+# removes previous oh-my-zsh
+sudo rm -rf ~/.oh-my-zsh/
+
 # installs oh-my-zsh
 echo "\e[32m[DOT]\e[34m installing oh my zsh ... \e[39m\n"
 ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
