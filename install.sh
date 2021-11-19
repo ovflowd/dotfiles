@@ -215,6 +215,9 @@ attention "Please do not open other terminal session until the scripts finishes 
     # installs zsh history db
     ! git clone https://github.com/larkery/zsh-histdb.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb"
 
+    # installs zsh auto suggestions
+    ! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
     log "installing motivate"
 
     # deletes the motivate folder
@@ -228,7 +231,7 @@ attention "Please do not open other terminal session until the scripts finishes 
         cd motivate/motivate
 
         # installs motivate
-        sudo ./install.sh
+        sudo ./install.sh >/dev/null 2>&1
     )
 
     # deletes the motivate folder
@@ -244,15 +247,6 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # touches zsh history file
     [[ ! -f ~/.zsh_history ]] && touch ~/.zsh_history
-
-    # Reloads the Environment
-    test -d ~/.zshrc && source ~/.zshrc
-    test -d ~/.profile && source ~/.profile
-
-    # initializes history db
-    log "initializing history database"
-
-    histdb-sync
 ) >log.log 2>error_log.log
 
 echo "installation Finished. Exiting."

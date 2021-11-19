@@ -87,6 +87,7 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - zsh-syntax-highlithing
 - zsh-sqlite-history-completion
 - zsh-histdb
+- zsh-autosuggestions
 - McFly
 
 ### Included Extra Packages

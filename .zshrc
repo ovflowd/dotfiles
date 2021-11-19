@@ -60,6 +60,23 @@ DISABLE_UPDATE_PROMPT="true"
 # History DB command for tabulation
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
+# Defines History DB auto completion command
+_zsh_autosuggest_strategy_histdb_top_here() {
+    local query="
+		select commands.argv from
+		history left join commands on history.command_id = commands.rowid
+		left join places on history.place_id = places.rowid
+		where places.dir LIKE '$(sql_escape $PWD)%'
+		and commands.argv LIKE '$(sql_escape $1)%'
+		group by commands.argv order by count(*) desc limit 1
+	"
+
+    suggestion=$(_histdb_query "$query")
+}
+
+# Sets ZSH Auto Suggestion to use HistDB
+ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -93,6 +110,7 @@ plugins=(
 	node
 	npm
 	zsh-z
+	zsh-autosuggestions
 )
 
 # Loads Homebrew (only if exists and needed (Linux))
@@ -107,7 +125,7 @@ plugins=(
 [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
 
 # Loads NVM
-nvm use > /dev/null 2>&1
+nvm use >/dev/null 2>&1
 
 # Loads Mcfly
 eval "$(mcfly init zsh)"
