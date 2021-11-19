@@ -12,6 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Updated Path Exports
 export PATH="/usr/local/sbin:$PATH"
+# export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/sbin:$PATH" # Required for linking Ruby on M1/ARM
 
 # Export NVM Installation
 export NVM_DIR="$HOME/.nvm"
@@ -55,6 +56,9 @@ DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
+
+# History DB command for tabulation
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -135,6 +139,12 @@ alias bu="brew upgrade"
 
 # Load Oh My ZSH
 source $ZSH/oh-my-zsh.sh
+
+# Load History DB
+source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+
+# Auto Load History DB
+autoload -Uz add-zsh-hook
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
