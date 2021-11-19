@@ -75,6 +75,10 @@ In order to install, simply open your bash or zsh and run `./install.sh`. Have f
 - byobu
 - lsd
 - httpie
+- php
+- ruby
+- docker
+- cocoapods (MacOS only)
 - dust
 
 ### Included ZSH Plugins
