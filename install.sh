@@ -125,7 +125,7 @@ attention "Please do not open other terminal session until the scripts finishes 
     sudo chown -R $(whoami) $(brew --prefix)/*
 
     # installs all the required packages
-    brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr byobu --quiet
+    brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr glances byobu --quiet
 
     # loads nvm for the first time
     source $(brew --prefix nvm)/nvm.sh
