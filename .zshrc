@@ -127,6 +127,9 @@ plugins=(
 # Loads NVM
 nvm use >/dev/null 2>&1
 
+# Loads Ruby Env (rbenv)
+eval "$(rbenv init - zsh)"
+
 # Loads Mcfly
 eval "$(mcfly init zsh)"
 

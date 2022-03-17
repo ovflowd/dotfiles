@@ -23,10 +23,12 @@ attention "Please do not open other terminal session until the scripts finishes 
                 warning "Debian based environment detected"
                 # install required dependencies
                 log "installing packages"
-                sudo apt -y install build-essential git debconf locales
+                sudo apt -y install build-essential git debconf locales rbenv curl ruby-build
                 # generate utf-8 environment
                 log "generating locales"
                 sudo locale-gen --purge en_US.UTF-8
+                # updates rbenv cache for installable versions
+                git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
             # check if environment is fedora/redhat
             elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
                 warning "RedHat based environment detected"
@@ -79,7 +81,7 @@ attention "Please do not open other terminal session until the scripts finishes 
 
             brew install font-hack-nerd-font --quiet
 
-            brew install cocoapods --quiet
+            brew install cocoapods rbenv ruby-build --quiet
         ;;
         Linux)
             log "configuring homebrew"
@@ -224,7 +226,7 @@ attention "Please do not open other terminal session until the scripts finishes 
     rm -rf motivate/
 
     # clones motivate
-    git clone https://github.com/mubaris/motivate.git 
+    git clone https://github.com/mubaris/motivate.git
 
     (
         # goes to the directory
