@@ -11,8 +11,8 @@ export EDITOR='nano'
 export ZSH="$HOME/.oh-my-zsh"
 
 # Updated Path Exports
-export PATH="/usr/local/sbin:$PATH"
-# export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/sbin:$PATH" # Required for linking Ruby on M1/ARM
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
 
 # Export NVM Installation
 export NVM_DIR="$HOME/.nvm"
@@ -113,32 +113,6 @@ plugins=(
 	zsh-autosuggestions
 )
 
-# Loads Homebrew (only if exists and needed (Linux))
-[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || export BYOBU_PREFIX=/home/linuxbrew/.linuxbrew
-
-# Loads NVM
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
-
-# Loads NVM Completion
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
-
-# Loads NVM
-nvm use >/dev/null 2>&1
-
-# Loads Ruby Env (rbenv)
-eval "$(rbenv init - zsh)"
-
-# Loads Mcfly
-eval "$(mcfly init zsh)"
-
-# Loads The-Fuck
-eval $(thefuck --alias f)
-
-# Load GitHub CLI Completion
-eval "$(gh completion -s zsh)"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -146,17 +120,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-autoload -Uz add-zsh-hook
+# Loads Homebrew (only if exists and needed (Linux))
+[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+[[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || export BYOBU_PREFIX=/home/linuxbrew/.linuxbrew
 
-# Custom Aliases
-alias up="cd .."
-alias cl="clear"
-alias g="git"
-alias commit="git cz"
-alias bu="brew upgrade"
+# Loads NVM
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
 
-# only macOS supports casks
-[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="brew upgrade && brew cask upgrade"
+# Loads The-Fuck
+eval $(thefuck --alias f)
+
+# Loads Mcfly
+eval "$(mcfly init zsh)"
+
+# Adds RBENV to Shell
+eval "$(rbenv init - zsh)"
 
 # Load Oh My ZSH
 source $ZSH/oh-my-zsh.sh
@@ -164,8 +142,8 @@ source $ZSH/oh-my-zsh.sh
 # Load History DB
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 
-# Auto Load History DB
-autoload -Uz add-zsh-hook
+# Load Forgit
+source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -181,10 +159,20 @@ autoload -Uz add-zsh-hook
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-figlet -w 200-k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})Hey,"
+alias up="cd .."
+alias cl="clear"
+alias g="git"
+alias commit="git cz"
+alias bu="brew upgrade"
 
+# Updates the `bu` alias to upgrade casks too when on macOS
+[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="brew upgrade --casks"
+
+# Prints a Larry3D text with your "Hey, {whoami}"
+figlet -w 200-k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})Hey,"
 figlet -w 200 -k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})$(whoami)"
 
+# Prints a random motivation phrase
 echo "\n\n$(printf '%.0s ' {0..20})$(motivate)\n"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
