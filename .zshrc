@@ -124,6 +124,15 @@ fi
 [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]] || export BYOBU_PREFIX=/home/linuxbrew/.linuxbrew
 
+# Load Oh My ZSH
+source $ZSH/oh-my-zsh.sh
+
+# Load History DB
+source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+
+# Load Forgit
+source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
+
 # Loads NVM
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
 
@@ -135,15 +144,6 @@ eval "$(mcfly init zsh)"
 
 # Adds RBENV to Shell
 eval "$(rbenv init - zsh)"
-
-# Load Oh My ZSH
-source $ZSH/oh-my-zsh.sh
-
-# Load History DB
-source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
-
-# Load Forgit
-source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
