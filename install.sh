@@ -219,6 +219,9 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # installs zsh auto suggestions
     ! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    
+    # installs forgit plugin
+    ! git clone https://github.com/wfxr/forgit.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/forgit"
 
     log "installing motivate"
 
