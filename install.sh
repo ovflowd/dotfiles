@@ -21,22 +21,34 @@ attention "Please do not open other terminal session until the scripts finishes 
         Linux)
             if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
                 warning "Debian based environment detected"
+
                 # install required dependencies
                 log "installing packages"
-                sudo apt -y install build-essential git debconf locales rbenv curl ruby-build
+
+                [[ ! "$EUID" -ne 0 ]] || sudo apt -y install build-essential git debconf locales rbenv curl ruby-build
+                [[ "$EUID" -ne 0 ]] || apt -y install build-essential git debconf locales rbenv curl ruby-build
+
                 # generate utf-8 environment
                 log "generating locales"
-                sudo locale-gen --purge en_US.UTF-8
+
+                [[ ! "$EUID" -ne 0 ]] || sudo locale-gen --purge en_US.UTF-8
+                [[ "$EUID" -ne 0 ]] || locale-gen --purge en_US.UTF-8
+
                 # updates rbenv cache for installable versions
                 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
             # check if environment is fedora/redhat
             elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
                 warning "RedHat based environment detected"
+
                 # install required dependencies
                 log "installing packages"
-                sudo dnf install @development-tools git -y
+
+                [[ ! "$EUID" -ne 0 ]] || sudo dnf install @development-tools git -y
+                [[ "$EUID" -ne 0 ]] || dnf install @development-tools git -y
+
                 # generate utf-8 environment
                 log "generating locales"
+
                 localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
             fi
         ;;
@@ -124,9 +136,6 @@ attention "Please do not open other terminal session until the scripts finishes 
     # taps to a homebrew tap for mcfly package
     brew tap cantino/mcfly --quiet
 
-    # fix homebrew permissions
-    sudo chown -R $(whoami) $(brew --prefix)/*
-
     # installs all the required packages
     brew install fish
     brew install bat
@@ -151,13 +160,6 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # loads nvm for the first time
     source $(brew --prefix nvm)/nvm.sh
-
-    # fix homebrew permissions
-    sudo chown -R $(whoami) $(brew --prefix)/*
-
-    # install bundler
-    log "installing ruby bundler"
-    sudo gem install bundler
 
     # sets nvm directory
     export NVM_DIR="$HOME/.nvm"
@@ -206,7 +208,7 @@ attention "Please do not open other terminal session until the scripts finishes 
     test -d ~/.profile && source ~/.profile
 
     # removes previous oh-my-zsh
-    sudo rm -rf ~/.oh-my-zsh/
+    rm -rf ~/.oh-my-zsh/
 
     # installs oh-my-zsh
     log "installing oh my zsh"
@@ -243,9 +245,14 @@ attention "Please do not open other terminal session until the scripts finishes 
     (
         # goes to the directory
         cd motivate/motivate
+        
+        if [ "$EUID" -ne 0 ]
+            then echo "Please run as root"
+        exit
 
         # installs motivate
-        sudo ./install.sh >/dev/null 2>&1
+        [[ ! "$EUID" -ne 0 ]] || sudo ./install.sh >/dev/null 2>&1
+        [[ "$EUID" -ne 0 ]] || ./install.sh >/dev/null 2>&1
     )
 
     # deletes the motivate folder
