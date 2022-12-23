@@ -245,10 +245,6 @@ attention "Please do not open other terminal session until the scripts finishes 
     (
         # goes to the directory
         cd motivate/motivate
-        
-        if [ "$EUID" -ne 0 ]
-            then echo "Please run as root"
-        exit
 
         # installs motivate
         [[ ! "$EUID" -ne 0 ]] || sudo ./install.sh >/dev/null 2>&1
