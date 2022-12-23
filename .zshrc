@@ -10,9 +10,13 @@ export EDITOR='nano'
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Path to PyEnv Installation
+export PYENV_ROOT="$HOME/.pyenv"
+
 # Updated Path Exports
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Export NVM Installation
 export NVM_DIR="$HOME/.nvm"
@@ -144,6 +148,10 @@ eval "$(mcfly init zsh)"
 
 # Adds RBENV to Shell
 eval "$(rbenv init - zsh)"
+
+# PyEnv VirtualEnv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

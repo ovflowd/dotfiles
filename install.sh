@@ -79,9 +79,10 @@ attention "Please do not open other terminal session until the scripts finishes 
 
             brew tap homebrew/cask-fonts --quiet
 
-            brew install font-hack-nerd-font --quiet
+            brew install font-hack-nerd-font
 
-            brew install cocoapods rbenv ruby-build --quiet
+            brew install rbenv
+            brew install ruby-build
         ;;
         Linux)
             log "configuring homebrew"
@@ -127,19 +128,32 @@ attention "Please do not open other terminal session until the scripts finishes 
     sudo chown -R $(whoami) $(brew --prefix)/*
 
     # installs all the required packages
-    brew install fish bat dust lsd mcfly httpie thefuck git-lfs gcc nano htop wget nmap gnupg gh coreutils nvm figlet less ffmpeg tldr glances byobu --quiet
+    brew install fish
+    brew install bat
+    brew install dust
+    brew install lsd
+    brew install mcfly
+    brew install httpie
+    brew install thefuck
+    brew install git-lfs
+    brew install nano
+    brew install htop
+    brew install wget
+    brew install nmap
+    brew install gnupg
+    brew install gh
+    brew install nvm
+    brew install figlet
+    brew install less
+    brew install tldr
+    brew install glances
+    brew install byobu
 
     # loads nvm for the first time
     source $(brew --prefix nvm)/nvm.sh
 
-    # install other development tools
-    brew install php ruby docker --quiet
-
     # fix homebrew permissions
     sudo chown -R $(whoami) $(brew --prefix)/*
-
-    # install other packages in quiet mode
-    brew install sqlite python --quiet
 
     # install bundler
     log "installing ruby bundler"
@@ -153,7 +167,7 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # installs latest node
     log "installing node.js"
-    nvm install node
+    nvm install lts
 
     # Reloads the Environment
     test -d ~/.zshrc && source ~/.zshrc
@@ -161,8 +175,8 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # switches to latest node
     log "switching to latest node"
-    nvm use node
-    nvm alias default node
+    nvm use lts
+    nvm alias default lts
 
     # upgrades npm to latest version
     npm i -g npm --silent
@@ -177,7 +191,7 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # installs other npm commonly used tools
     log "installing other node packages"
-    npm i -g npm yarn eslint prettier husky ts-node babel-node cross-env lerna gtop --silent
+    npm i -g npm yarn eslint prettier husky ts-node babel-node cross-env gtop --silent
 
     # configures git lfs
     log "configuring git lfs"
@@ -186,11 +200,6 @@ attention "Please do not open other terminal session until the scripts finishes 
     # updates git configuration
     log "enabling default git strategies"
     git config --global pull.rebase true
-
-    # installs virtualenv for python
-    log "installing virtualenv"
-
-    pip3 install virtualenv
 
     # Reloads the Environment
     test -d ~/.zshrc && source ~/.zshrc
@@ -219,7 +228,7 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # installs zsh auto suggestions
     ! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    
+
     # installs forgit plugin
     ! git clone https://github.com/wfxr/forgit.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/forgit"
 
