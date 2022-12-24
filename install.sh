@@ -160,6 +160,8 @@ attention "Please do not open other terminal session until the scripts finishes 
     brew install tldr
     brew install glances
     brew install byobu
+    brew install pyenv
+    brew install pyenv-virtualenv
 
     # loads nvm for the first time
     source $(brew --prefix nvm)/nvm.sh
@@ -232,10 +234,10 @@ attention "Please do not open other terminal session until the scripts finishes 
     ! git clone https://github.com/larkery/zsh-histdb.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-histdb"
 
     # installs zsh auto suggestions
-    ! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    ! git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
     # installs forgit plugin
-    ! git clone https://github.com/wfxr/forgit.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/forgit"
+    ! git clone https://github.com/wfxr/forgit.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/forgit"
 
     log "installing motivate"
 
