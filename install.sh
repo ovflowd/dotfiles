@@ -23,7 +23,7 @@ attention "Please do not open other terminal session until the scripts finishes 
                 warning "Debian based environment detected"
                 
                 [[ ! "$EUID" -ne 0 ]] || sudo apt update
-                [[ ! "$EUID" -ne 0 ]] || apt update
+                [[ "$EUID" -ne 0 ]] || apt update
 
                 # install required dependencies
                 log "installing packages"
