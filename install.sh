@@ -21,6 +21,9 @@ attention "Please do not open other terminal session until the scripts finishes 
         Linux)
             if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
                 warning "Debian based environment detected"
+                
+                [[ ! "$EUID" -ne 0 ]] || sudo apt update
+                [[ ! "$EUID" -ne 0 ]] || apt update
 
                 # install required dependencies
                 log "installing packages"
