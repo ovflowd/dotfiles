@@ -38,7 +38,7 @@ attention "Please do not open other terminal session until the scripts finishes 
                 [[ "$EUID" -ne 0 ]] || locale-gen --purge en_US.UTF-8
 
                 # updates rbenv cache for installable versions
-                git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+                [[ -d  "$(rbenv root)"/plugins/ruby-build ]] || git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
             # check if environment is fedora/redhat
             elif [ "$(grep -Ei 'fedora|redhat|centos' /etc/*release)" ]; then
                 warning "RedHat based environment detected"
