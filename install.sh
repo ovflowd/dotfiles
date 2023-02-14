@@ -21,7 +21,7 @@ attention "Please do not open other terminal session until the scripts finishes 
         Linux)
             if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
                 warning "Debian based environment detected"
-                
+
                 [[ ! "$EUID" -ne 0 ]] || sudo apt update
                 [[ "$EUID" -ne 0 ]] || apt update
 
@@ -142,10 +142,6 @@ attention "Please do not open other terminal session until the scripts finishes 
     # installs all the required packages
     brew install fish
     brew install bat
-    brew install dust
-    brew install lsd
-    brew install mcfly
-    brew install httpie
     brew install thefuck
     brew install git-lfs
     brew install nano
@@ -159,7 +155,6 @@ attention "Please do not open other terminal session until the scripts finishes 
     brew install less
     brew install tldr
     brew install glances
-    brew install byobu
     brew install pyenv
     brew install pyenv-virtualenv
 
@@ -198,7 +193,7 @@ attention "Please do not open other terminal session until the scripts finishes 
 
     # installs other npm commonly used tools
     log "installing other node packages"
-    npm i -g npm yarn eslint prettier husky ts-node babel-node cross-env gtop --silent
+    npm i -g npm yarn eslint prettier husky ts-node babel-node cross-env --silent
 
     # configures git lfs
     log "configuring git lfs"
