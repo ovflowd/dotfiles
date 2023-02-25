@@ -143,9 +143,6 @@ source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 # Loads The-Fuck
 eval $(thefuck --alias f)
 
-# Loads Mcfly
-eval "$(mcfly init zsh)"
-
 # Adds RBENV to Shell
 eval "$(rbenv init - zsh)"
 
