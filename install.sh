@@ -157,6 +157,8 @@ attention "Please do not open other terminal session until the scripts finishes 
     brew install glances
     brew install pyenv
     brew install pyenv-virtualenv
+    brew install fzf
+    brew install 1password-cli
 
     # loads nvm for the first time
     source $(brew --prefix nvm)/nvm.sh
