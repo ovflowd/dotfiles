@@ -16,6 +16,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # Updated Path Exports
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+export PATH=/opt/homebrew/opt/ruby/bin:$PATH
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Export NVM Installation
@@ -66,7 +67,7 @@ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 
 # Defines History DB auto completion command
 _zsh_autosuggest_strategy_histdb_top_here() {
-    local query="
+  local query="
 		select commands.argv from
 		history left join commands on history.command_id = commands.rowid
 		left join places on history.place_id = places.rowid
@@ -75,7 +76,7 @@ _zsh_autosuggest_strategy_histdb_top_here() {
 		group by commands.argv order by count(*) desc limit 1
 	"
 
-    suggestion=$(_histdb_query "$query")
+  suggestion=$(_histdb_query "$query")
 }
 
 # Sets ZSH Auto Suggestion to use HistDB
@@ -141,14 +142,14 @@ source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
 
 # Loads The-Fuck
-eval $(thefuck --alias f)
+# eval $(thefuck --alias f)
 
 # Adds RBENV to Shell
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
 
 # PyEnv VirtualEnv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -172,13 +173,6 @@ alias bu="brew upgrade"
 
 # Updates the `bu` alias to upgrade casks too when on macOS
 [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] || alias bu="brew upgrade --casks"
-
-# Prints a Larry3D text with your "Hey, {whoami}"
-figlet -w 200-k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})Hey,"
-figlet -w 200 -k -f "$(brew --prefix)/share/figlet/fonts/larry3d.flf" "$(printf '%.0s ' {0..5})$(whoami)"
-
-# Prints a random motivation phrase
-echo "\n\n$(printf '%.0s ' {0..20})$(motivate)\n"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
