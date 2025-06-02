@@ -92,8 +92,6 @@ attention "Please do not open other terminal session until the scripts finishes 
         Darwin)
             log "installing nerd fonts"
 
-            brew tap homebrew/cask-fonts --quiet
-
             brew install font-hack-nerd-font
             brew install rbenv
             brew install ruby-build
